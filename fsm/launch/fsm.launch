@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="fsm" name="fsm" type="fsm.py" output="screen"></node>
+</launch>
+
