@@ -1,0 +1,3 @@
+server_msgs/Area area_availability
+---
+string response

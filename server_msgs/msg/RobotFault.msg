@@ -1,0 +1,5 @@
+std_msgs/String external_reference_id
+std_msgs/String vehicle_id
+std_msgs/String vehicle_type_id
+std_msgs/String error_code
+std_msgs/String error_message

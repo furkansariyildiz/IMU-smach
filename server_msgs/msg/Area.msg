@@ -1,0 +1,4 @@
+std_msgs/String area_name
+std_msgs/Header header
+geometry_msgs/Point position
+geometry_msgs/Quaternion orientation

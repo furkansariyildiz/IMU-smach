@@ -1,0 +1,3 @@
+string url
+string current_activity
+string external_reference_id

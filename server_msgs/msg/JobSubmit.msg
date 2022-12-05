@@ -1,0 +1,5 @@
+string external_reference_id
+string job_status
+string error_code
+string message
+server_msgs/Task last_completed_task

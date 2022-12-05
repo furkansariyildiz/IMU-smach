@@ -1,0 +1,5 @@
+string external_reference_id #job id
+server_msgs/Task[] tasks #task list
+server_msgs/Task last_completed_task
+---
+string response #response

@@ -1,0 +1,1 @@
+server_msgs/LocationStatus[] locations_status
