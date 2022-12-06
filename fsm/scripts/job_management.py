@@ -3,7 +3,8 @@
 import smach
 import rospy
 
-
+# Messages
+from server_msgs.msg import Job
 
 class JobManagement(smach.State):
     """
@@ -14,7 +15,7 @@ class JobManagement(smach.State):
     def __init__(self):
         rospy.loginfo('JobManagement is initialized')
         
-        smach.State.__init__(self, outcomes=['succeeded', 'failed'], output_keys=['error_message_out'])  
+        smach.State.__init__(self, outcomes=['succeeded', 'job_management', 'failed'], input_keys=['job_in'], output_keys=['error_message_out'])  
         
 
         # Define ROS variables
@@ -27,8 +28,11 @@ class JobManagement(smach.State):
 
     def execute(self, ud):
         rospy.sleep(self.duration)
-
+        current_job = ud.job_in
         try:
+            if current_job == Job():
+                return 'job_management'
+
             return 'succeeded'
         except Exception as e:
             ud.error_message_out = self.package_name + str(e)

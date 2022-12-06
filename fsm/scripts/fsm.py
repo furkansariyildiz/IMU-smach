@@ -119,8 +119,10 @@ class FSM:
 
             smach.StateMachine.add('JobManagement', JobManagement(),
                                     transitions={'succeeded': 'JobManagement',
-                                                'failed': 'Failed'},
-                                    remapping={'error_message_out': 'error_message'})
+                                                 'job_management': 'JobManagement',
+                                                 'failed': 'Failed'},
+                                    remapping={'job_in': 'current_job',
+                                               'error_message_out': 'error_message'})
 
             smach.StateMachine.add('Failed', Failed(),
                                    transitions={'succeeded': 'Failed'},
