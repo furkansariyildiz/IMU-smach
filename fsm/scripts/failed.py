@@ -24,7 +24,7 @@ class Failed(smach.State):
         self.error_message = RobotFault()
   
         # Define class variables
-        self.package_name = " [ PatikaRobotics.FailedState ] "
+        self.package_name = " [ Medeniyet.FailedState ] "
 
 
     def execute(self, ud):

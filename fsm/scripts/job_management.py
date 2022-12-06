@@ -22,7 +22,7 @@ class JobManagement(smach.State):
 
 
         # Define class variables
-        self.package_name = " [ PatikaRobotics.JobManagement ] "
+        self.package_name = " [ Medeniyet.JobManagement ] "
         
 
     def execute(self, ud):

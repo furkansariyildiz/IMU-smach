@@ -25,7 +25,7 @@ class FSM:
         """
         @brief Smach-State Machine class configuration
         @param None
-        @source http://wiki.ros.org/smach/Tutorials/Getting%20Started - PatikaRobotics
+        @source http://wiki.ros.org/smach/Tutorials/Getting%20Started - Medeniyet
         @return None
         """
         self._sm = smach.StateMachine(outcomes=['Finished']) # Final State

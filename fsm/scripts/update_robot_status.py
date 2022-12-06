@@ -33,7 +33,7 @@ class UpdateRobotStatus(smach.State):
 
 
         # Define class variables
-        self.package_name = " [ PatikaRobotics.UpdateRobotStatus ] "
+        self.package_name = " [ Medeniyet.UpdateRobotStatus ] "
         
 
 
