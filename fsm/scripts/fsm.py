@@ -14,6 +14,7 @@ from server_msgs.srv import JobToRobot, JobToRobotRequest, JobToRobotResponse
 
 # States
 from start import Start
+from check_backend_connection import BackendConnection
 from update_robot_status import UpdateRobotStatus
 from job_management import JobManagement
 from failed import Failed
@@ -99,7 +100,13 @@ class FSM:
         with self._sm:
             # Add states to the container.
             smach.StateMachine.add('Start', Start(),
-                                   transitions={'succeeded': 'UpdateRobotStatusIdle'})
+                                   transitions={'succeeded': 'CheckBackendConnection'})
+
+            smach.StateMachine.add('CheckBackendConnection', BackendConnection(),
+                                    transitions={'succeeded': 'UpdateRobotStatusIdle',
+                                                 'check_backend_connection': 'CheckBackendConnection',
+                                                 'failed': 'Failed'},
+                                    remapping={'error_message_out': 'error_message'})
 
             smach.StateMachine.add('UpdateRobotStatusIdle', UpdateRobotStatus(),
                                     transitions={'succeeded': 'JobManagement',
