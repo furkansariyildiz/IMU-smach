@@ -17,6 +17,7 @@ from start import Start
 from check_backend_connection import BackendConnection
 from update_robot_status import UpdateRobotStatus
 from job_management import JobManagement
+from navigation import Navigation
 from failed import Failed
 
 
@@ -114,14 +115,32 @@ class FSM:
                                                 'failed': 'Failed'},
                                     remapping={'robot_in': 'robot',
                                                'activity_in': 'IDLE',
-                                               'robot_ud': 'robot',
+                                               'robot_out': 'robot',
                                                'error_message_out': 'error_message'})
 
             smach.StateMachine.add('JobManagement', JobManagement(),
-                                    transitions={'succeeded': 'JobManagement',
+                                    transitions={'succeeded': 'UpdateRobotStatusInProgress',
                                                  'job_management': 'JobManagement',
                                                  'failed': 'Failed'},
                                     remapping={'job_in': 'current_job',
+                                               'error_message_out': 'error_message'})
+
+            smach.StateMachine.add('UpdateRobotStatusInProgress', UpdateRobotStatus(),
+                                    transitions={'succeeded': 'Navigation',
+                                                 'response_failed': 'UpdateRobotStatusInProgress',
+                                                'failed': 'Failed'},
+                                    remapping={'robot_in': 'robot',
+                                               'activity_in': 'IN_PROGRESS',
+                                               'robot_out': 'robot',
+                                               'error_message_out': 'error_message'})
+
+            smach.StateMachine.add('Navigation', Navigation(),
+                                    transitions={'response_failed': 'Navigation',
+                                                 'in_progress': 'Navigation',
+                                                 'completed': 'UpdateRobotStatusIdle',
+                                                 'failed': 'Failed'},
+                                    remapping={'job_in': 'current_job',
+                                               'job_out': 'current_job',
                                                'error_message_out': 'error_message'})
 
             smach.StateMachine.add('Failed', Failed(),
