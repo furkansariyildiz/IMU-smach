@@ -10,9 +10,6 @@ from server_msgs.srv import RobotToBackend, RobotToBackendRequest, RobotToBacken
 
 
 
-
-
-
 class UpdateRobotStatus(smach.State):
     """
     @brief UpdateRobotStatus State class configuration.

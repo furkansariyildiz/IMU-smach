@@ -1,2 +1,3 @@
-std_msgs/String id
-server_msgs/Action action
+string action_name
+string location_id
+# server_msgs/Location location

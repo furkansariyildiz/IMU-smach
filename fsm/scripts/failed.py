@@ -29,7 +29,7 @@ class Failed(smach.State):
 
     def execute(self, ud):
         rospy.sleep(self.duration)
-
+        
         self.error = ud.error_message_in
         self.error_message.error_message = str(self.error)
         self.error_message_publisher.publish(self.error_message)
